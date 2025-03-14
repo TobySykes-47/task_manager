@@ -1,13 +1,12 @@
 <?php
 include 'database.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $title = $_POST['title'];
-    $description = $POST['description'];
+    $description = $_POST['description'];
 
-    $stmt = $pdo->prepare("INSERT INTO tasks (title, description
-    )VALUES (:title, :description)");
-    $stmt->excecute(['title' => $title, 'description' => $description]);
+    $stmt = $pdo->prepare("INSERT INTO tasks (title, description) VALUES (:title, :description)");
+    $stmt->execute(['title' => $title, 'description' => $description]);
 
     header("location: index.php");
     exit;
