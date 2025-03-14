@@ -7,7 +7,7 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 $stmt = $pdo->prepare("SELECT * FROM tasks WHERE id = :id");
-$stmt ->excecute(['id' => $id]);
+$stmt ->execute(['id' => $id]);
 $task = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$task) {
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $status = $_POST['status'];
 
     $stmt = $pdo->prepare("UPDATE tasks SET title = :title, description = :description, status = :status WHERE id = :id");
-    $stmt->excecute(['title' => $title, 'description' => $description, 'status' => $status, 'id' => $id]);
+    $stmt->execute(['title' => $title, 'description' => $description, 'status' => $status, 'id' => $id]);
 
     header("Location: index.php");
     exit;
